@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Step Up ADHD Coaching</title>
+  <meta name="description" content="Clarity, calm, and confidence for ADHD adults and students. Step up with coaching that is practical, warm, and grounded." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Rosario:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- Brand Tokens ---------- */
+    :root{
+      /* Base tokens (kept) */
+      --teal-600:#2E6F81;   --sand-200:#E8DCCB;
+      --navy-700:#143D6B;   --blue-400:#6D8FAE; --blue-300:#90AECB;
+      --green-300:#C5DFBE;  --green-200:#DDECDD;
+      --taupe-500:#9A877F;  --greige-300:#BCAFA9; --greige-200:#D6CDC8;
+      --ink:#0F1222;        --text:#1C2430;      --muted:#5A6673;
+      --bg:#FCFCFC;         --white:#FFFFFF;
+      --radius:16px; --shadow-sm:0 6px 18px rgba(17, 40, 70, .06);
+      --shadow-md:0 14px 30px rgba(17, 40, 70, .12);
+      --serif:"Rosario", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      --sans:"Rosario", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      --space-1:.5rem; --space-2:.75rem; --space-3:1rem; --space-4:1.25rem;
+      --space-5:1.75rem; --space-6:2.25rem; --space-7:3rem; --space-8:4.5rem;
+      --maxw:1200px;
+
+      /* === Your palette === */
+      --brand-navy:#2F3B69;
+      --brand-steel:#7A89A5;
+      --brand-ice:#BED6EA;
+      --brand-sage:#BBB488;
+      --brand-gold:#C19D65;
+      --brand-mint:#88B393;
+    }
+
+    /* ---------- Base ---------- */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; color:var(--text); background:var(--bg);
+         font-family:var(--sans); line-height:1.6; font-size:16px;}
+    img{max-width:100%; display:block}
+    a{color:var(--teal-600); text-decoration:none}
+    a:hover{opacity:.9}
+    .container{max-width:var(--maxw); margin-inline:auto; padding-inline:clamp(1rem, 3vw, 2rem)}
+    .grid{display:grid; gap:clamp(1rem, 2vw, 1.5rem)}
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:.5rem;
+         padding:.95rem 1.2rem; border-radius:14px; font-weight:600;
+         transition:.2s ease; text-align:center; cursor:pointer; border:0;}
+    .btn-primary{background:var(--teal-600); color:var(--white); box-shadow:0 8px 22px rgba(20,61,107,.28)}
+    .btn-primary:hover{transform:translateY(-1px); box-shadow:var(--shadow-md)}
+    .btn-ghost{background:transparent; color:var(--teal-600); border:2px solid var(--teal-600)}
+    .btn-ghost.hero-ghost{color:#fff; border-color:#fff}
+
+    .kicker{letter-spacing:.08em; text-transform:uppercase; color:var(--navy-700); font-weight:700; font-size:.78rem}
+    .h1{font-family:var(--serif); font-weight:700; line-height:1.1; font-size:clamp(2rem, 4vw, 3.2rem); color:var(--ink)}
+    .h2{font-family:var(--serif); font-weight:700; line-height:1.2; font-size:clamp(1.4rem, 2.8vw, 2rem); color:var(--ink)}
+    .eyebrow{color:var(--muted); font-weight:600; font-size:.8rem; letter-spacing:.08em; text-transform:uppercase}
+    .brand-name{font-family:var(--sans); font-weight:800}
+    .lead, p {font-weight:500}
+
+    /* ====== Section “soft surfaces” using your palette ====== */
+    .surface{ padding-block: clamp(2.5rem, 6vw, 4.5rem); border-block:1px solid color-mix(in oklab, var(--brand-steel) 18%, #e5e9ef); }
+    .surface > .container{ max-width:var(--maxw); margin-inline:auto; padding-inline:clamp(1rem,3vw,2rem); }
+    .soft-ice  { background: color-mix(in oklab, var(--brand-ice) 45%,  white); }
+    .soft-mint { background: color-mix(in oklab, var(--brand-mint)35%,  white); }
+    .soft-gold { background: color-mix(in oklab, var(--brand-gold)25%,  white); }
+    .soft-steel{ background: color-mix(in oklab, var(--brand-steel)18%, white); }
+
+    /* ---------- Header ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--white);
+      border-bottom: 1px solid #eee;
+      box-shadow: 0 2px 6px rgba(0,0,0,.05);
+    }
+    .nav { display:flex; align-items:center; justify-content:space-between; height:90px; padding-inline:2rem; }
+    .brand-logo { height:100px; width:auto; display:block; }
+    nav ul { display:flex; gap:2rem; list-style:none; padding:0; margin:0; align-items:center;}
+    nav a { color:var(--text); font-weight:600; transition:color .2s ease; }
+    nav a:hover { color:var(--teal-600); }
+    nav .btn-primary { padding:.75rem 1.4rem; border-radius:10px; font-size:1rem; }
+    .mobile-toggle { display:none; }
+    @media (max-width:768px){ nav ul{display:none} .mobile-toggle{display:inline-flex} }
+
+    .brand { gap:.5rem; align-items:center; }
+    .brand-logo{ display:block; height:48px; width:auto; border-radius:8px; box-shadow:var(--shadow-sm); }
+    .brand-badge{ display:none; }
+    .sr-only{ position:absolute!important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+    @media (max-width:640px){ .brand-logo{ height:40px; } }
+
+    /* ---------- Hero (mountain background) ---------- */
+    .hero{
+      position: relative; isolation:isolate;
+      background: url("images/hero-mountain.jpg") center / cover no-repeat;
+      padding-block: clamp(3rem, 8vw, 6rem);
+      color:white; min-height: clamp(420px, 70vh, 800px);
+      --veil-x:50%; --veil-y:45%;
+      background-blend-mode:multiply;
+      background-color: color-mix(in oklab, var(--brand-steel) 20%, transparent);
+    }
+    .hero::before{
+      content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+      background:
+        radial-gradient(900px circle at var(--veil-x) var(--veil-y),
+          rgba(0,0,0,.70) 0%,
+          rgba(0,0,0,.55) 35%,
+          rgba(0,0,0,.32) 60%,
+          rgba(0,0,0,0) 100%);
+    }
+    .hero-inner{position:relative; z-index:1; max-width:980px; margin-inline:auto; text-align:center;}
+    .hero h1, .hero p, .hero .kicker{ text-shadow:0 2px 8px rgba(0,0,0,.6); }
+    .hero-visual{display:none}
+    .kicker.hero-kicker{color:var(--sand-200)}
+    .h1.hero-title{color:white}
+    .lead-hero{color:white}
+    .hero-copy { display:grid; gap:1.1rem; justify-items:center; }
+    .hero-chips{ list-style:none; padding:0; margin:.5rem 0 0;
+      display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:.85rem; width:min(900px,100%);}
+    .hero-chips .chip{
+      text-align:center; font-weight:700; padding:.9rem 1.1rem; border-radius:14px; color:#fff;
+      background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.35);
+      backdrop-filter:blur(6px); box-shadow:0 4px 14px rgba(0,0,0,.18);
+    }
+    .hero-actions{display:flex; gap:.85rem; flex-wrap:wrap; justify-content:center; margin-top:1.1rem;}
+
+    /* ---------- Ribbon ---------- */
+    .ribbon{ background: color-mix(in oklab, var(--brand-ice) 52%, white); border-block:1px solid color-mix(in oklab, var(--brand-steel)18%, #eaeef3); }
+    .ribbon-inner{display:flex; gap:1rem; justify-content:center; flex-wrap:wrap; padding-block:.8rem}
+    .pill{ padding:.4rem .7rem; border-radius:999px; font-weight:700; font-size:.85rem }
+    .pill.steel{  background: color-mix(in oklab, var(--brand-steel) 30%, white);  color:#2b394c; }
+    .pill.mint{   background: color-mix(in oklab, var(--brand-mint)  45%, white);  color:#1f3a2f; }
+    .pill.ice{    background: color-mix(in oklab, var(--brand-ice)   55%, white);  color:#233447; }
+    .pill.gold{   background: color-mix(in oklab, var(--brand-gold)  40%, white);  color:#3e2e17; }
+
+    /* ---------- Cards / Sections ---------- */
+    section{padding-block: clamp(2.5rem, 6vw, 4.5rem)}
+    .section-header{display:grid; gap:.25rem; margin-bottom:clamp(1.2rem, 3vw, 1.8rem)}
+    .lead{font-size:1.1rem; color:var(--muted)}
+    .card{background:var(--white); border:1px solid #EEF0F2; border-radius:var(--radius);
+          padding:clamp(1rem, 2vw, 1.25rem); box-shadow:var(--shadow-sm);}
+    .icon{width:42px; height:42px; border-radius:10px; display:grid; place-items:center;
+          background:var(--green-300); font-weight:800; color:#234; margin-bottom:.6rem;}
+    .feature-grid{grid-template-columns:repeat(3, minmax(0,1fr))}
+    @media (max-width:960px){ .feature-grid{grid-template-columns:1fr} }
+
+    /* ---------- Visual band (full-bleed) ---------- */
+    .visual-band{
+      position:relative; isolation:isolate;
+      background:
+        linear-gradient(rgba(0,0,0,.18), rgba(0,0,0,.28)),
+        url("images/hikers.jpg") center 45% / cover no-repeat;
+      color:#fff; min-height:clamp(300px,45vh,520px);
+      display:grid; place-items:center; overflow:hidden;
+    }
+    .visual-band::before,
+    .visual-band::after{
+      content:""; position:absolute; left:0; right:0; height:48px; z-index:1; pointer-events:none;
+    }
+    .visual-band::before{ top:0;    background:linear-gradient(to bottom, rgba(255,255,255,1), rgba(255,255,255,0)); }
+    .visual-band::after{  bottom:0; background:linear-gradient(to top,    rgba(255,255,255,1), rgba(255,255,255,0)); }
+    .visual-band h3{ position:relative; z-index:2; margin:0; font-weight:800; letter-spacing:.02em; text-shadow:0 2px 12px rgba(0,0,0,.55); }
+
+    /* ---------- Image grid (Approach visuals) ---------- */
+    /* ===== Better visual cards (clean, larger, consistent) ===== */
+
+/* 3-up grid on desktop, single column on mobile */
+.img-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: clamp(1rem, 2.2vw, 1.4rem);
+  margin-top: 1.25rem;
+}
+
+/* Card container */
+.img-card{
+  border: none;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 26px rgba(17,40,70,.10);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+/* Lift on hover (but keep subtle) */
+.img-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(17,40,70,.16);
+}
+
+/* Taller media area so the images breathe.
+   4:3 shows more vertical subject than 16:9 */
+.img-card .media{
+  aspect-ratio: 4 / 3;   /* was 16/9 */
+  background: #e9eef2;
+  overflow: hidden;
+}
+
+/* Crisp images with gentle color pop */
+.img-card img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;      /* fill without distortion */
+  object-position: center;/* center the subject */
+  display: block;
+  filter: contrast(1.05) saturate(1.03);
+}
+
+/* Caption: bolder, clearer, more padding */
+.img-card figcaption{
+  padding: 1rem 1.1rem 1.15rem;
+  font-weight: 800;
+  font-size: clamp(1.02rem, 1.2vw, 1.15rem);
+  color: var(--brand-navy);
+  letter-spacing: .2px;
+}
+
+/* Mobile: single column for maximum clarity */
+@media (max-width: 960px){
+  .img-grid{ grid-template-columns: 1fr; }
+}
+
+    /* ---------- Benefits callout image ---------- */
+    .benefits-callout{ border-radius:14px; overflow:hidden; box-shadow:var(--shadow-sm); }
+    .benefits-callout img{ width:100%; height:100%; object-fit:cover; }
+
+    /* ---------- Pricing ---------- */
+    .pricing{background:
+        radial-gradient(1200px 600px at 70% -20%, rgba(20,61,107,.08), transparent 60%),
+        linear-gradient(180deg, var(--sand-200), rgba(255,255,255, .85));
+      border-top:1px solid #eee; border-bottom:1px solid #eee;}
+    .price-grid{grid-template-columns:repeat(3, minmax(0,1fr))}
+    .price-card{display:flex; flex-direction:column; gap:.7rem; align-items:flex-start;
+      border-radius:20px; background:var(--white); border:1px solid #eaecef;
+      box-shadow:var(--shadow-md); padding:clamp(1rem, 2vw, 1.5rem);}
+    .price{font-size:2rem; font-weight:800; color:var(--navy-700)}
+    .badge{font-weight:800; color:var(--white); background:var(--navy-700); border-radius:999px; padding:.25rem .55rem; font-size:.75rem}
+    .muted{color:var(--muted)}
+    @media (max-width:960px){ .price-grid{grid-template-columns:1fr} }
+
+    /* ---------- FAQ ---------- */
+    .faq details{background:var(--white); border-radius:14px; border:1px solid #EDF0F2; padding:1rem; box-shadow:var(--shadow-sm)}
+    .faq summary{cursor:pointer; font-weight:700}
+    .faq details + details{margin-top:.75rem}
+
+    /* ---------- CTA ---------- */
+    .cta{background: linear-gradient(180deg, var(--blue-300), var(--teal-600));
+         color:white; text-align:center; position:relative; overflow:hidden;}
+    .cta .container{display:grid; gap:1rem}
+    .cta p{opacity:.95}
+
+    /* ---------- Footer ---------- */
+    .site-footer{ background: color-mix(in oklab, var(--brand-steel) 10%, white); border-top:1px solid #eee; padding-top:2rem; padding-bottom:1.5rem; }
+    .footer-wrap{ display:grid; grid-template-columns:1.4fr 1fr; gap:2rem; align-items:start; }
+    .footer-tagline{ color:var(--navy-700); font-weight:700; letter-spacing:.06em; margin-bottom:.5rem; }
+    .footer-name{ font-family:var(--serif); font-weight:800; font-size:clamp(2rem, 5vw, 3rem); color:var(--navy-700); margin:.1rem 0 .25rem; }
+    .footer-title{ font-weight:700; color:var(--muted); margin-bottom:.75rem }
+    .footer-contact ul{ list-style:none; padding:0; margin:0; display:grid; gap:.9rem }
+    .footer-contact li{ display:flex; align-items:center; gap:.6rem; }
+    .footer-contact a{ color:var(--text); text-decoration:none; font-weight:600; }
+    .footer-contact a:hover{ color:var(--teal-600); }
+    .ico{ display:inline-grid; place-items:center; width:36px; height:36px; border-radius:9px;
+      background: color-mix(in oklab, var(--navy-700) 12%, white); color:var(--navy-700); }
+    .copyright{ text-align:center; margin-top:1rem; }
+    @media (max-width:900px){ .footer-wrap{ grid-template-columns:1fr; } .footer-name{ font-size:clamp(2rem, 7vw, 2.6rem); } }
+    /* ===== Values strip (replaces .ribbon) ===== */
+.values-strip{
+  background: #BED6EA;               /* palette light blue */
+  border-top: 1px solid rgba(0,0,0,.06);
+  border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.values-inner{
+  display:flex; justify-content:center; gap:.8rem; flex-wrap:wrap;
+  padding-block: .9rem;
+}
+.pill{
+  padding:.5rem .9rem; border-radius:999px; font-weight:700; font-size:.92rem;
+}
+.pill-soft{
+  background:#EAF2FB;                 /* softer chip background */
+  color:#2F3B69;                       /* deep navy from palette */
+  border:1px solid rgba(47,59,105,.12);
+}
+
+/* ===== Showcase card (replaces .visual-band) ===== */
+.showcase{
+  padding: clamp(1.4rem, 3vw, 2.2rem) 0;       /* breathing room around the card */
+  background: #EAF2FB;                         /* gentle stage behind the card */
+}
+.showcase .showcase-media{
+  max-width: var(--maxw);
+  margin: 0 auto;
+  border-radius: 28px;
+  min-height: clamp(360px, 50vh, 560px);
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(17,40,70,.18);
+  position: relative;
+
+  /* photo + soft overlay (no harsh fades) */
+  background:
+    linear-gradient( to bottom right, rgba(20,37,61,.35), rgba(0,0,0,.22) ),
+    url("images/hikers.jpg") center 48% / cover no-repeat;
+}
+
+/* Centered heading on the image */
+.showcase-title{
+  position:absolute; inset:auto 0 14%;         /* bottom-center; adjust as you like */
+  margin:0 auto; text-align:center;
+  width:min(90%, 900px);
+  color:#fff;
+  font-weight:800;
+  font-size:clamp(1.6rem, 3.4vw, 2.6rem);
+  letter-spacing:.02em;
+  text-shadow:0 2px 14px rgba(0,0,0,.5);
+}
+
+/* Optional: slight hover “alive” feel on desktop */
+@media (hover:hover){
+  .showcase .showcase-media:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 22px 48px rgba(17,40,70,.22);
+    transition: transform .18s ease, box-shadow .18s ease;
+  }
+}
+
+  </style>
+</head>
+
+<script>
+  // Center the veil under your hero copy
+  function positionHeroVeil(){
+    const hero = document.querySelector('.hero');
+    const inner = document.querySelector('.hero .hero-inner');
+    if (!hero || !inner) return;
+    const hRect = hero.getBoundingClientRect();
+    const cRect = inner.getBoundingClientRect();
+    const cx = ((cRect.left + cRect.width/2) - hRect.left) / hRect.width * 100;
+    const cy = ((cRect.top  + cRect.height/2) - hRect.top ) / hRect.height * 100;
+    hero.style.setProperty('--veil-x', cx + '%');
+    hero.style.setProperty('--veil-y', cy + '%');
+  }
+  window.addEventListener('load', positionHeroVeil);
+  window.addEventListener('resize', positionHeroVeil);
+</script>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img src="images/Logo.png" alt="Step Up ADHD Coaching" class="brand-logo">
+      </div>
+      <nav aria-label="Primary">
+        <button class="mobile-toggle btn btn-ghost" id="openNav" aria-expanded="false" aria-controls="mobileNav">Menu</button>
+        <ul id="desktopNav">
+          <li><a href="#approach">Approach</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a class="btn btn-primary" href="#book">Book a Discovery Call</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <div class="kicker hero-kicker">Clarity · Elevation · Warmth</div>
+        <h1 class="h1 hero-title">Move beyond overwhelm to calm, confident action.</h1>
+        <p class="lead lead-hero">Personal ADHD coaching that turns scattered to structured, stuck to stepping forward—one practical step at a time.</p>
+
+        <ul class="hero-chips">
+          <li class="chip">Evidence-informed, not therapy</li>
+          <li class="chip">Warm accountability</li>
+          <li class="chip">Tools you’ll actually use</li>
+          <li class="chip">Clear goals & check-ins</li>
+        </ul>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#book">Book a free 20-minute call</a>
+          <a class="btn btn-ghost hero-ghost" href="#approach">How coaching works</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ribbon -->
+ 
+
+  <!-- Visual band -->
+  <!-- Values strip (clean chips on light background) -->
+<section class="values-strip" aria-label="Coaching values">
+  <div class="container values-inner">
+    <span class="pill pill-soft">Professional Warmth</span>
+    <span class="pill pill-soft">Actionable Tools</span>
+    <span class="pill pill-soft">Vision & Accountability</span>
+    <span class="pill pill-soft">Neuro-affirming</span>
+  </div>
+</section>
+
+<!-- Polished showcase card with photo -->
+<section class="showcase" aria-label="From clarity to action">
+  <div class="showcase-media">
+    <h3 class="showcase-title">From clarity to confident action</h3>
+  </div>
+</section>
+
+
+  <!-- Approach (soft ice surface) -->
+  <section class="surface soft-ice">
+    <div class="container" id="approach">
+      <div class="section-header">
+        <div class="eyebrow">What to expect</div>
+        <h2 class="h2">ADHD Coaching that’s structured, human, and effective</h2>
+        <p class="lead">Each 50-minute session builds clarity and momentum. We set a focus, co-design strategies, and agree on one or two concrete “step-ups” for the week.</p>
+      </div>
+
+      <div class="grid feature-grid">
+        <article class="card">
+          <div class="icon">1</div>
+          <h3>Discovery</h3>
+          <p class="muted">A free 20-minute call to understand goals, fit, and how coaching differs from therapy.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">2</div>
+          <h3>Mind Reset</h3>
+          <p class="muted">4 sessions over ~6 weeks to tackle priority pain points and install everyday tools.</p>
+        </article>
+
+        <article class="card">
+          <div class="icon">3</div>
+          <h3>Transformation</h3>
+          <p class="muted">12 sessions for deeper work on values, identity, strengths, and life design.</p>
+        </article>
+      </div>
+
+      <!-- Visuals that match the approach -->
+      <div class="img-grid" aria-label="Coaching in pictures">
+        <figure class="img-card">
+          <div class="media"><img src="images/stairs.jpg" alt="Professional walking up steps toward progress" loading="lazy" decoding="async"></div>
+          <figcaption>Step up your systems</figcaption>
+        </figure>
+        <figure class="img-card">
+          <div class="media"><img src="images/goals.jpg" alt="Coffee beside a note with goals: dream big, set goals, take action" loading="lazy" decoding="async"></div>
+          <figcaption>Clear goals, steady action</figcaption>
+        </figure>
+        <figure class="img-card">
+          <div class="media"><img src="images/jump.jpg" alt="Joyful leap on a mountain" loading="lazy" decoding="async"></div>
+          <figcaption>Energy & confidence return</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits (soft mint surface) -->
+  <section class="surface soft-mint">
+    <div class="container" id="benefits">
+      <div class="grid" style="grid-template-columns: 1.5fr 1fr; gap:clamp(1rem,2vw,1.25rem)">
+        <div class="grid feature-grid" style="grid-template-columns:1fr; gap:clamp(1rem,2vw,1.25rem)">
+          <article class="card">
+            <h3>ADHD Coaching vs. Therapy</h3>
+            <p class="muted">Coaching is present-to-future focused. We build systems, experiments, and habits. Therapy addresses mental health conditions and past healing. We’ll refer out when therapy is the better fit.</p>
+          </article>
+
+          <article class="card">
+            <h3>Benefits of Coaching</h3>
+            <ul class="muted" style="margin:0; padding-left:1rem">
+              <li>Clarity on priorities and values</li>
+              <li>Systems for planning & follow-through</li>
+              <li>Reduced overwhelm, calmer days</li>
+              <li>Confidence and self-trust</li>
+            </ul>
+          </article>
+
+          <article class="card" style="background:var(--green-200)">
+            <h3>Who I Work With</h3>
+            <p class="muted">Students, professionals, and parents with ADHD (diagnosed or self-identified). Neuro-affirming, strengths-based, inclusive.</p>
+          </article>
+        </div>
+
+        <figure class="benefits-callout" aria-label="Inspiration photo">
+          <img src="images/hikers.jpg" alt="Two people celebrating progress on a ridge">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- About (soft gold surface) -->
+  <section class="surface soft-gold">
+    <div class="container" id="about">
+      <div class="section-header">
+        <div class="eyebrow">About Step Up</div>
+        <h2 class="h2">Warm, practical, and grounded coaching</h2>
+        <p class="lead">I grew up in Russia, where ADHD wasn’t widely understood, and carried my half-
+          recognized challenges into a 30-year career in corporate America. Despite excitement,
+          success, and moments of fulfillment, throughout my career I faced frequent frustration
+          and recurring burnout that I couldn’t fully explain. I recognized these patterns from
+          observing my father’s and grandmother’s behaviors during my childhood, but without a
+          name for them, I didn’t know how to address them and continued to push through the
+          best I could.
+          Everything shifted when my older daughter was diagnosed with ADHD at age 10. That
+          moment launched my journey of self-discovery, helping me recognize that the bright
+          imagination, intuition, and emotional intensity shared by many members of my family
+          were hallmarks of a unique brain style. Through reading, research, and reframing of my
+          own experiences, I learned how mindset and self-compassion can transform struggle
+          into joy.
+          Today, after completing my training with the IACT Center, I am an ADHD Life Coach
+          dedicated to helping others navigate their challenges and find clarity, confidence, and
+          fulfillment.</p>
+      </div>
+
+      <div class="grid" style="grid-template-columns: 1fr 1.5fr">
+        <div class="card" aria-label="Coach headshot area">
+          <div class="card" aria-label="Coach headshot area">
+            <div style="aspect-ratio:1/1; border-radius:14px; overflow:hidden;">
+              <img src="images/unnamed.webp" 
+                   alt="Coach headshot" 
+                   style="width:100%; height:100%; object-fit:cover;">
+            </div>
+           
+          </div>
+          
+        
+        </div>
+        <div class="card">
+          <h3>Philosophy</h3>
+          <p class="muted">You’re not broken; your brain is brilliant. We design supports that make your strengths effortless to use. Expect gentle curiosity, clear structure, and actionable tools.</p>
+          <h3 style="margin-top:.75rem">Services</h3>
+          <ul class="muted">
+            <li>1:1 coaching (virtual)</li>
+            <li>Focus sprints & accountability check-ins</li>
+            <li>Small group coaching (4–6 people)</li>
+            <li>Parent and student supports</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing (kept) -->
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <div class="section-header" style="text-align:center">
+        <div class="eyebrow">Pricing Packages</div>
+        <h2 class="h2">Choose your step-up</h2>
+        <p class="lead">Transparent, simple options. Sliding scale may be available—just ask.</p>
+      </div>
+
+      <div class="grid price-grid">
+        <div class="price-card">
+          <span class="badge">Start here</span>
+          <h3>Discovery Session</h3>
+          <div class="price">$0</div>
+          <p class="muted">A free 20-minute chat to explore your goals and how coaching can help.</p>
+          <a class="btn btn-primary" href="#book">Book discovery</a>
+        </div>
+
+        <div class="price-card">
+          <h3>Mind Reset Package</h3>
+          <div class="price">$600</div>
+          <p class="muted">4 × 50-min sessions (within ~6 weeks). First session can extend to 90 minutes for intake & goal setting.</p>
+          <a class="btn btn-primary" href="#book">Start Mind Reset</a>
+        </div>
+
+        <div class="price-card">
+          <h3>Transformation Package</h3>
+          <div class="price">$1,500</div>
+          <p class="muted">12 × 50-min sessions (within ~15 weeks). Deep dive into values, strengths, systems.</p>
+          <a class="btn btn-primary" href="#book">Begin transformation</a>
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top:1rem; grid-template-columns:repeat(3, minmax(0,1fr))">
+        <div class="card">
+          <h4>Step Into Clarity – Consulting</h4>
+          <p class="muted">$150 · single 50-min session for targeted topics (diagnosis next steps, treatment options, school/work supports, sharing diagnosis).</p>
+        </div>
+        <div class="card">
+          <h4>Re-alignment Mini-Package</h4>
+          <p class="muted">$200 · 1 × 50-min + 1 × 30-min follow-up for a specific challenge. Can be added to any package.</p>
+        </div>
+        <div class="card">
+          <h4>Step Up in Sync – Group</h4>
+          <p class="muted">$200 per person · 4 sessions (4–6 people). Topic-based groups with peer momentum and coaching.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="container">
+    <div class="section-header">
+      <div class="eyebrow">Client Wins</div>
+      <h2 class="h2">Calmer days. Clearer focus. Real progress.</h2>
+    </div>
+    <div class="grid" style="grid-template-columns:repeat(3, minmax(0,1fr))">
+      <blockquote class="card"><em>“For the first time I’m finishing what I start—and I’m kinder to myself when I don’t.”</em><br><span class="muted">— Professional, 32</span></blockquote>
+      <blockquote class="card"><em>“Her systems are simple and actually stick. My week finally has a rhythm.”</em><br><span class="muted">— Student, 20</span></blockquote>
+      <blockquote class="card"><em>“Warm, practical, and no fluff. Exactly what my ADHD brain needed.”</em><br><span class="muted">— Parent, 41</span></blockquote>
+    </div>
+  </section>
+
+  <!-- FAQ (soft steel surface) -->
+  <section class="surface soft-steel" aria-label="Frequently Asked Questions">
+    <div class="container faq" id="faq">
+      <div class="section-header">
+        <div class="eyebrow">FAQ</div>
+        <h2 class="h2">Quick answers</h2>
+      </div>
+      <details>
+        <summary>Do I need a formal ADHD diagnosis?</summary>
+        <p>Not required. If you’re ADHD-curious or self-identified, coaching can still help. We can also discuss assessment options.</p>
+      </details>
+      <details>
+        <summary>Is coaching covered by insurance?</summary>
+        <p>Coaching is typically not insurance-covered. Many clients use HSA/FSA cards. Receipts provided upon request.</p>
+      </details>
+      <details>
+        <summary>What happens between sessions?</summary>
+        <p>We’ll agree on 1–2 commitments (“step-ups”), plus lightweight check-ins or focus sprints for accountability.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="book" class="cta">
+    <div class="container">
+      <h2 class="h2" style="color:white">Ready to step up?</h2>
+      <p>Book a free 20-minute discovery call to explore coaching and next steps.</p>
+      <div style="display:flex; justify-content:center; gap:.75rem; flex-wrap:wrap">
+        <a class="btn btn-primary" href="#">Book your call</a>
+        <a class="btn btn-ghost" style="color:white; border-color:white" href="#pricing">See pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <div class="footer-brand">
+        <div class="footer-tagline eyebrow">Helping ADHD minds achieve clarity, calm and lasting confidence.</div>
+        <h3 class="footer-name">Tatiana Berezin</h3>
+        <div class="footer-title subtle">ADHD Coach, ACC</div>
+      </div>
+
+      <div class="footer-contact">
+        <ul>
+          <li>
+            <span class="ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M6.62 10.79a15.46 15.46 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.12.37 2.33.57 3.57.57a1 1 0 011 1V21a1 1 0 01-1 1C10.85 22 2 13.15 2 2a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.24 1.02l-2.2 2.2z"/></svg>
+            </span>
+            <a href="tel:+19174983951">(917) 498-3951</a>
+          </li>
+          <li>
+            <span class="ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm7.93 9h-3.15a14.9 14.9 0 00-1.29-5.07A8.02 8.02 0 0119.93 11zM12 4c.9 0 2.4 2.04 3.12 5H8.88C9.6 6.04 11.1 4 12 4zM6.51 5.93A14.9 14.9 0 005.22 11H2.07a8.02 8.02 0 014.44-5.07zM2.07 13h3.15c.27 1.83.82 3.56 1.59 5.07A8.02 8.02 0 012.07 13zM12 20c-.9 0-2.4-2.04-3.12-5h6.24C14.4 17.96 12.9 20 12 20zm5.49-1.93A14.9 14.9 0 0018.78 13h3.15a8.02 8.02 0 01-4.44 5.07z"/></svg>
+            </span>
+            <a href="https://www.StepUpADHDCoaching.com" target="_blank" rel="noopener">www.StepUpADHDCoaching.com</a>
+          </li>
+          <li>
+            <span class="ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2a7 7 0 00-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 00-7-7zm0 9a2 2 0 110-4 2 2 0 010 4z"/></svg>
+            </span>
+            <a href="https://maps.google.com/?q=15-16%20Landzettel%20Way%2C%20Fair%20Lawn%2C%2007410" target="_blank" rel="noopener">
+              15-16 Landzettel Way, Fair Lawn, NJ 07410
+            </a>
+          </li>
+          <li>
+            <span class="ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </span>
+            <a href="mailto:Tatiana@StepUpADHDCoach.com">Tatiana@StepUpADHDCoach.com</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="subtle copyright">© <span id="year"></span> Step Up ADHD Coaching. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const btn = document.getElementById('openNav');
+    const desktop = document.getElementById('desktopNav');
+    btn?.addEventListener('click', () => {
+      const showing = desktop.style.display === 'flex';
+      desktop.style.display = showing ? 'none' : 'flex';
+      btn.setAttribute('aria-expanded', (!showing).toString());
+    });
+  </script>
+</body>
+</html>
